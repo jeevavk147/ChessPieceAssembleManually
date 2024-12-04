@@ -431,7 +431,7 @@ export class EngineFacade extends AbstractEngineFacade {
             return;
         }
 
-        if (toPromotePiece.point.row === 2 || toPromotePiece.point.row === 9) {
+        if ((toPromotePiece.point.row === 2 || toPromotePiece.point.row === 9) && this.gamestart) {
             this.board.pieces = this.board.pieces.filter(
                 (piece) => piece !== toPromotePiece
             );
