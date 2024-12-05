@@ -25,7 +25,7 @@ export class Rook extends Piece {
 
         if(col!=8  && this.board.addedpiece==32)
             {
-        for (let i = row + 1; i < 8; ++i) {
+        for (let i = row + 1; i < 10; ++i) {
             // dol
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -34,7 +34,7 @@ export class Rook extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -97,7 +97,7 @@ export class Rook extends Piece {
         const row = this.point.row;
         const col = this.point.col;
         if(this.board.addedpiece==32)
-        {for (let i = row + 1; i < 8; ++i) {
+        {for (let i = row + 1; i < 10; ++i) {
             // dol
             if (
                 this.board.isFieldTakenByEnemy(
@@ -115,7 +115,7 @@ export class Rook extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (
                 this.board.isFieldTakenByEnemy(
@@ -178,7 +178,7 @@ export class Rook extends Piece {
         const row = this.point.row;
         const col = this.point.col;
 
-        for (let i = row + 1; i < 8; ++i) {
+        for (let i = row + 1; i < 10; ++i) {
             // dol
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -190,7 +190,7 @@ export class Rook extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));

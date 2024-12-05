@@ -273,8 +273,8 @@ export class Board {
     }
 
     private reversePoint(point: Point) {
-        if (point) {
-            point.row = Math.abs(point.row - 7);
+        if (point && point.col!=8) {
+            point.row = Math.abs(point.row - 11);
             point.col = Math.abs(point.col - 7);
         }
     }

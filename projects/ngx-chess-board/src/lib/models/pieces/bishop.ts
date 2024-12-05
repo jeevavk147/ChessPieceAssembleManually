@@ -22,7 +22,7 @@ export class Bishop extends Piece {
         const col = this.point.col;
         if(col!=8 && this.board.addedpiece==32)
         {
-        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -31,7 +31,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -40,7 +40,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -49,7 +49,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -59,7 +59,8 @@ export class Bishop extends Piece {
         } }
         if(col==8)
         {
-         if(this.color==Color.BLACK)
+            if(!this.board.reverted)
+        { if(this.color==Color.BLACK)
          {
             if (this.board.isFieldEmpty(2,2))
                 {
@@ -80,7 +81,33 @@ export class Bishop extends Piece {
                 {
                 possiblePoints.push(new Point(9,5));
                 }   
-         }         
+         }         }
+         if(this.board.reverted)
+         {
+            if(this.color==Color.BLACK)
+                {
+                   if (this.board.isFieldEmpty(9,2))
+                       {
+                       possiblePoints.push(new Point(9,2));
+                       }
+                       if (this.board.isFieldEmpty(9,5))
+                       {
+                           possiblePoints.push(new Point(9,5));
+                       }        
+                } 
+                if(this.color==Color.WHITE)
+                {
+                   if (this.board.isFieldEmpty(2,2))
+                       {
+                       possiblePoints.push(new Point(2,2));
+                       }
+                    if (this.board.isFieldEmpty(2,5))
+                       {
+                       possiblePoints.push(new Point(2,5));
+                       }   
+                }    
+
+         }
         }
         return possiblePoints;
     }
@@ -90,9 +117,10 @@ export class Bishop extends Piece {
         const possiblePoints = [];
 
         const row = this.point.row;
-        const col = this.point.col
+        const col = this.point.col;
         if(this.board.addedpiece==32)
-        {for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        {
+            for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -110,7 +138,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -128,7 +156,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -146,7 +174,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -161,9 +189,9 @@ export class Bishop extends Piece {
                 if (!this.board.isFieldEmpty(i, j)) {
                     break;
                 }
-            }}
+            }
         }
-
+    }
         return possiblePoints;
     }
 
@@ -173,7 +201,7 @@ export class Bishop extends Piece {
         const row = this.point.row;
         const col = this.point.col;
 
-        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -185,7 +213,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -197,7 +225,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -209,7 +237,7 @@ export class Bishop extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));

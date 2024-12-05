@@ -209,6 +209,7 @@ static loadDefaultPieces(board: Board) {
         UnicodeConstants.BLACK_KNIGHT,
         board
     ));
+
     board.pieces.push(new Rook(
         new Point(1, 8),
         Color.BLACK,

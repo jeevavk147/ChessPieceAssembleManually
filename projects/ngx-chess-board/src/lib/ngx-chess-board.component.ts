@@ -220,15 +220,27 @@ export class NgxChessBoardComponent
     }
 
     dragEnded(event: CdkDragEnd): void {
+        console.log("drag end")
         this.isDragging = false;
-        this.engineFacade.dragEndStrategy.process(
+        let place=this.engineFacade.board.lastMoveSrc.row+this.engineFacade.board.lastMoveSrc.col
+        console.log(this.engineFacade.board.lastMoveSrc.col)
+        if(this.engineFacade.board.placecount.get(place)>0)
+        {this.engineFacade.dragEndStrategy.process(
             event,
-            this.engineFacade.moveDone,
+            false,
             this.startTransition
-        );
-    }
+        );}
+        else{
+            this.engineFacade.dragEndStrategy.process(
+                event,
+                this.engineFacade.moveDone,
+                this.startTransition
+            );
+        }   
+     }
 
     dragStart(event: CdkDragStart): void {
+        console.log("drag start")
         this.isDragging = true;
         let trans = event.source.getRootElement().style.transform.split(') ');
         //   this.startTrans= trans;
@@ -244,6 +256,7 @@ export class NgxChessBoardComponent
     }
 
     onContextMenu(event: MouseEvent): void {
+        console.log('contectmenu')
         this.engineFacade.onContextMenu(event);
     }
 

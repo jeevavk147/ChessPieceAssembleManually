@@ -180,22 +180,43 @@ export class King extends Piece {
 
         if(col==8 )
         {
-        if(this.color==Color.BLACK)
-        {
-            if (this.board.isFieldEmpty(2,4))
-                {
-                possiblePoints.push(new Point(2,4));
-                }         
-        }
-        if(this.color==Color.WHITE) 
-         {
-            if (this.board.isFieldEmpty(9,4))
-                {
-                possiblePoints.push(new Point(9,4));
-                } 
-         }      
-        }
+            if(!this.board.reverted)
+                { 
+                    if(this.color==Color.BLACK)
+                        {
+                            if (this.board.isFieldEmpty(2,4))
+                                {
+                                possiblePoints.push(new Point(2,4));
+                                }         
+                        }
+                        if(this.color==Color.WHITE) 
+                         {
+                            if (this.board.isFieldEmpty(9,4))
+                                {
+                                possiblePoints.push(new Point(9,4));
+                                } 
+                         }      
+                        }
+               
 
+        if(this.board.reverted)
+            { 
+                if(this.color==Color.BLACK)
+                    {
+                        if (this.board.isFieldEmpty(9,4))
+                            {
+                            possiblePoints.push(new Point(9,4));
+                            }         
+                    }
+                    if(this.color==Color.WHITE) 
+                     {
+                        if (this.board.isFieldEmpty(2,4))
+                            {
+                            possiblePoints.push(new Point(2,4));
+                            } 
+                     }      
+                    }
+            }
         return possiblePoints;
     }
 

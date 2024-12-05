@@ -13,7 +13,7 @@
             (cdkDragEnded)="dragEnded($event)"
             (cdkDragMoved)="dragMoved($event)"
             (cdkDragStarted)="dragStart($event)"
-            class="single-piece" [innerHTML]="engineFacade.pieceIconManager.isDefaultIcons() ? piece.constant.icon : ''"
+            class="single-piece" 
             [ngStyle]="engineFacade.pieceIconManager.isDefaultIcons() ? '' : getCustomPieceIcons(piece)"
             [style.transform]="'translate3d(' + piece.point.col * pieceSize + 'px, ' + piece.point.row * pieceSize + 'px,0px)'"
             [style.max-height]="pieceSize + 'px'"
@@ -24,6 +24,10 @@
             [style.--animation-duration]="animationDuration + 'ms'"
             *ngFor="let piece of engineFacade.board.pieces; let i = index"
         >
+        <span 
+        [innerHTML]="engineFacade.pieceIconManager.isDefaultIcons() ? piece.constant.icon : ''"
+        >
+        </span>
         
         </div>
            <div
@@ -52,8 +56,10 @@
                 <span class="yCoord" style="color: black;" *ngIf="j===8 && engineFacade.board.placecount.get(i+j)!=0">
                     {{ engineFacade.board.placecount.get(i+j) }}
                 </span>
-                <!-- <span class="yCoord" style="color: black;"*ngIf="j===8 && engineFacade.board.placecount.get(i+j)==0">
-                    {{engineFacade.board.placecount.get(i+j+1)}}
+                <!-- <span class="single-piece"
+                 [innerHTML]="engineFacade.pieceIconManager.isDefaultIcons() ? engineFacade.board.getPieceByPoint(i,j).constant.icon : ''"
+                *ngIf="j===8 && engineFacade.board.placecount.get(i+j)>0">
+                    
                 </span> -->
                 <span
                     class="xCoord"
@@ -72,15 +78,7 @@
                         [style.font-size]="pieceSize + 'px'" > </div> </div>
             </div> <!--col close -->
       </div> <!--rowclose -->
-        <!-- <div class="single-piece"
-        [cdkDragDisabled]="engineFacade.dragDisabled"
-            (cdkDragMoved)="dragMoved($event)"
-            (cdkDragStarted)="dragStart($event)"
-            cdkDrag
-            [style.--animation-duration]="animationDuration + 'ms'"
-             style="vertical-align: top;width: 12.5%; height: 12.5%; position: relative;display: inline-block;" *ngFor="let piece of custompiece; let i = index" 
-              [style.background-color]="(i % 2 === 0) ? lightTileColor : darkTileColor"
-              [innerHTML]="piece.constant.icon"></div> -->
+        
               
     </div>
     

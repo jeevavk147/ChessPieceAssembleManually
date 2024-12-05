@@ -148,6 +148,7 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     prepareActivePiece(pieceClicked: Piece, pointClicked: Point) {
+        console.log("prepareactive Piece")
         this.board.activePiece = pieceClicked;
         this._selected = true;
         this.board.possibleCaptures = new AvailableMoveDecorator(
@@ -232,7 +233,7 @@ export class EngineFacade extends AbstractEngineFacade {
         left?: number,
         top?: number
     ) {
-        console.log("mousedown")
+        console.log("onmousedown",pointClicked)
         this.moveDone = false;
        
         if (event.button !== 0) {
