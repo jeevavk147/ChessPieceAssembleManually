@@ -12,6 +12,7 @@ import { Rook } from './pieces/rook';
 export class Board {
     board: number[][] = [];
     pieces: Piece[] = [];
+    startpiece=[]
     customboard:number[][]=[]
     addedpiece:number=0
     placecount=new Map<number,number>()
@@ -39,12 +40,6 @@ export class Board {
                 this.board[i][j] = 0;
             }
         }
-        // for (let i = 0; i < 8; ++i) {
-        //     this.board[i] = [];
-        //     for (let j = 0; j < 1; ++j) {
-        //         this.customboard[i][j] = 0;
-        //     }
-        // }
     }
 
     isXYInPossibleMoves(row: number, col: number): boolean {
@@ -140,6 +135,15 @@ export class Board {
         }
 
         return this.pieces.find((piece) => piece.point.col === col && piece.point.row === row);
+    }
+
+    getstartPieceByField(row: number, col: number): Piece {
+        if (this.isFieldEmpty(row, col)) {
+            //   throw new Error('Piece not found');
+            return undefined;
+        }
+
+        return this.startpiece.find((piece) => piece.point.col === col && piece.point.row === row);
     }
 
     isKingInCheck(color: Color, pieces: Piece[]): boolean {

@@ -150,7 +150,6 @@ static loadDefaultPieces(board: Board) {
             board
         )
         board.pieces.push(pawn);
-       
     }
     board.placecount.set(8,8)
     board.placecount.set(9,2)
@@ -166,6 +165,18 @@ static loadDefaultPieces(board: Board) {
     board.placecount.set(18,1)
     board.placecount.set(19,1)
 
+    board.startpiece.push(new Pawn(
+        new Point(0, 8),
+        Color.BLACK,
+        UnicodeConstants.BLACK_PAWN,
+        board
+    ))
+    board.startpiece.push(new Rook(
+        new Point(1, 8),
+        Color.BLACK,
+        UnicodeConstants.BLACK_ROOK,
+        board
+    ));
     board.pieces.push(new Rook(
         new Point(1, 8),
         Color.BLACK,

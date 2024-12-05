@@ -25,7 +25,7 @@ export abstract class AbstractEngineFacade {
     public dragEndStrategy: DragEndStrategy = new DragEndStrategy();
     public pgnProcessor: AbstractPgnProcessor = new DefaultPgnProcessor();
     protected colorStrategy: ColorStrategy = new ColorStrategy();
-
+    public isDragging = false;
     public coords: CoordsProvider = new CoordsProvider();
     public heightAndWidth: number = Constants.DEFAULT_SIZE;
 

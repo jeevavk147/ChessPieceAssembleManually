@@ -30,6 +30,7 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     _selected = false;
+    
     drawPoint: DrawPoint;
     drawProvider: DrawProvider;
     boardStateProvider: BoardStateProvider;
@@ -148,7 +149,6 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     prepareActivePiece(pieceClicked: Piece, pointClicked: Point) {
-        console.log("prepareactive Piece")
         this.board.activePiece = pieceClicked;
         this._selected = true;
         this.board.possibleCaptures = new AvailableMoveDecorator(
@@ -177,13 +177,7 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     public handleClickEvent(pointClicked: Point, isMouseDown: boolean) {
-        console.log("handle click")
         let moving = false;
-        if(!pointClicked.isInRange)
-        {
-            console.log('not in range')
-        }
-        
         if (((
             this.board.isPointInPossibleMoves(pointClicked) ||
             this.board.isPointInPossibleCaptures(pointClicked)
@@ -233,7 +227,6 @@ export class EngineFacade extends AbstractEngineFacade {
         left?: number,
         top?: number
     ) {
-        console.log("onmousedown",pointClicked)
         this.moveDone = false;
        
         if (event.button !== 0) {
@@ -298,7 +291,6 @@ export class EngineFacade extends AbstractEngineFacade {
         top: number
     ) {
         // pointClicked.row=pointClicked.row+2
-        console.log("mouseup called",pointClicked)
         this.moveDone = false;
         if (event.button !== 0) {
             if (!this.drawDisabled && this.drawPoint) {
@@ -515,7 +507,7 @@ export class EngineFacade extends AbstractEngineFacade {
             },
             freeMode: this.freeMode
         });
-
+        
         this.moveDone = true;
     }
 

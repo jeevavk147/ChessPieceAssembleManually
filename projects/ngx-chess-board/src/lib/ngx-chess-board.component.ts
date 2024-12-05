@@ -31,6 +31,7 @@ import { PieceIconInput } from './utils/inputs/piece-icon-input';
 import { PieceIconInputManager } from './utils/inputs/piece-icon-input-manager';
 import { ColorInput, PieceTypeInput } from './utils/inputs/piece-type-input';
 import { DefaultPiecesLoader } from './engine/board-state-provider/board-loader/default-pieces-loader';
+import { Point } from './models/pieces/point';
 
 @Component({
     selector: 'ngx-chess-board',
@@ -67,7 +68,6 @@ export class NgxChessBoardComponent
     selected = false;
     boardLoader: BoardLoader;
     pieceIconManager: PieceIconInputManager;
-    isDragging = false;
     startTransition = '';
     count=5
     
@@ -154,7 +154,7 @@ export class NgxChessBoardComponent
         }
         // this.engineFacade.boardLoader.addPieces()
         this.custompiece=DefaultPiecesLoader.pieces
-        console.log(this.engineFacade.board.placecount)
+        console.log(this.engineFacade.board.startpiece)
     }
 
     ngAfterViewInit(): void {
@@ -177,6 +177,48 @@ export class NgxChessBoardComponent
         this.engineFacade.coords.reverse();
     }
 
+    setplacecount(i,j)
+    {
+        // setTimeout(() => {
+            
+        // }, 1000);
+        this.engineFacade.board.placecount.delete(i+j)
+        let row=i
+        let col=j
+        if(i>5)
+        {
+            let moved=20
+        for(let k=i+j+1;k<=19;k++)
+       { 
+        for(let l=0;l<this.engineFacade.board.placecount.get(k);l++)
+        {
+            this.engineFacade.board.getPieceByField(k-8,8).point=new Point(row,col)
+        }
+        this.engineFacade.board.placecount.set(k-1,this.engineFacade.board.placecount.get(k))
+        row++
+       }
+       this.engineFacade.board.placecount.set(--moved,0)
+      }
+      if(i<=5)
+        {
+            let moved=7
+        for(let k=i+j-1;k>=8;k--)
+       { 
+        for(let l=0;l<this.engineFacade.board.placecount.get(k);l++)
+        {
+            this.engineFacade.board.getPieceByField(k-8,8).point=new Point(row,col)
+            
+        }
+        // this.engineFacade.board.getstartPieceByField(this.engineFacade.board.lastMoveSrc.row,8).point.col=9
+        // this.engineFacade.board.getstartPieceByField(k-8,8).point=new Point(row,col)
+        this.engineFacade.board.placecount.set(k+1,this.engineFacade.board.placecount.get(k))
+        row--
+       }
+       this.engineFacade.board.placecount.set(++moved,0)
+      }
+
+
+    }
     updateBoard = (board: Board) => {
         this.engineFacade.board = board;
         this.engineFacade.board.possibleCaptures = [];
@@ -220,17 +262,17 @@ export class NgxChessBoardComponent
     }
 
     dragEnded(event: CdkDragEnd): void {
-        console.log("drag end")
-        this.isDragging = false;
+        this.engineFacade.isDragging = false;
         let place=this.engineFacade.board.lastMoveSrc.row+this.engineFacade.board.lastMoveSrc.col
-        console.log(this.engineFacade.board.lastMoveSrc.col)
-        if(this.engineFacade.board.placecount.get(place)>0)
-        {this.engineFacade.dragEndStrategy.process(
-            event,
-            false,
-            this.startTransition
-        );}
-        else{
+        // if(this.engineFacade.board.placecount.get(place) > 0 )
+        // {
+        //     this.engineFacade.dragEndStrategy.process(
+        //     event,
+        //     false,
+        //     this.startTransition
+        // );}
+        // else
+        {
             this.engineFacade.dragEndStrategy.process(
                 event,
                 this.engineFacade.moveDone,
@@ -240,8 +282,7 @@ export class NgxChessBoardComponent
      }
 
     dragStart(event: CdkDragStart): void {
-        console.log("drag start")
-        this.isDragging = true;
+        this.engineFacade.isDragging = true;
         let trans = event.source.getRootElement().style.transform.split(') ');
         //   this.startTrans= trans;
         this.startTransition = trans.length === 2 ? trans[1] : trans[0];
@@ -256,7 +297,6 @@ export class NgxChessBoardComponent
     }
 
     onContextMenu(event: MouseEvent): void {
-        console.log('contectmenu')
         this.engineFacade.onContextMenu(event);
     }
 
@@ -325,7 +365,7 @@ export class NgxChessBoardComponent
         if(j==8 && this.engineFacade.board.placecount.get(i+j)!=0)
             color=Constants.DEFAULT_COLOR
         if (this.showLastMove) {
-            if (this.engineFacade.board.isXYInSourceMove(i, j)) {
+            if (this.engineFacade.board.isXYInSourceMove(i, j) && j<8) {
                 color = this.sourcePointColor;
             }
 
@@ -335,5 +375,19 @@ export class NgxChessBoardComponent
         }
 
         return color;
+    }
+    getbolderleftcolor(i,j)
+    {
+        if(j==8 && this.engineFacade.board.placecount.get(i+j)!=0)
+        {
+            return "1px solid black"
+        }
+    }
+    getbolderbottomcolor(i,j)
+    {
+        if(j==8 && i==5 && this.engineFacade.board.placecount.get(i+j)!=0)
+        {
+            return "2px solid black"
+        }
     }
 }
