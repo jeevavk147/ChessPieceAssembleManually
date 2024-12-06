@@ -64,7 +64,8 @@ export class Rook extends Piece {
 
     if(col==8)
         {
-         if(this.color==Color.BLACK)
+            if(!this.board.reverted)
+         {if(this.color==Color.BLACK)
          {
             if (this.board.isFieldEmpty(2,0))
                 {
@@ -85,8 +86,32 @@ export class Rook extends Piece {
                 {
                 possiblePoints.push(new Point(9,7));
                 }   
-         }         
+         }         }
         }
+
+        if(this.board.reverted)
+            {if(this.color==Color.BLACK)
+            {
+               if (this.board.isFieldEmpty(9,0))
+                   {
+                   possiblePoints.push(new Point(9,0));
+                   }
+                   if (this.board.isFieldEmpty(9,7))
+                   {
+                       possiblePoints.push(new Point(9,7));
+                   }        
+            } 
+            if(this.color==Color.WHITE)
+            {
+               if (this.board.isFieldEmpty(2,0))
+                   {
+                   possiblePoints.push(new Point(2,0));
+                   }
+                if (this.board.isFieldEmpty(2,7))
+                   {
+                   possiblePoints.push(new Point(2,7));
+                   }   
+            }         }
 
         return possiblePoints;
     }

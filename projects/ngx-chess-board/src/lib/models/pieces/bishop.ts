@@ -59,7 +59,7 @@ export class Bishop extends Piece {
         } }
         if(col==8)
         {
-            if(!this.board.reverted)
+        if(!this.board.reverted)
         { if(this.color==Color.BLACK)
          {
             if (this.board.isFieldEmpty(2,2))

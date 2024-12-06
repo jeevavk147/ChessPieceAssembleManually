@@ -66,7 +66,8 @@ export class Knight extends Piece {
     }
     if(col==8)
         {
-         if(this.color==Color.BLACK)
+            if(!this.board.reverted)
+         {if(this.color==Color.BLACK)
          {
             if (this.board.isFieldEmpty(2,1))
                 {
@@ -87,7 +88,34 @@ export class Knight extends Piece {
                 {
                 possiblePoints.push(new Point(9,6));
                 }   
-         }         
+         }      
+        }
+        
+        if(this.board.reverted)
+            {if(this.color==Color.BLACK)
+            {
+               if (this.board.isFieldEmpty(9,1))
+                   {
+                   possiblePoints.push(new Point(9,1));
+                   }
+                   if (this.board.isFieldEmpty(9,6))
+                   {
+                       possiblePoints.push(new Point(9,6));
+                   }        
+            } 
+            if(this.color==Color.WHITE)
+            {
+               if (this.board.isFieldEmpty(2,1))
+                   {
+                   possiblePoints.push(new Point(2,1));
+                   }
+                if (this.board.isFieldEmpty(2,6))
+                   {
+                   possiblePoints.push(new Point(2,6));
+                   }   
+            }      
+           }
+
         }
         return possiblePoints;
     }

@@ -54,7 +54,8 @@ export class Pawn extends Piece {
         }}
         if(col==8)
         {
-        if(this.color==Color.WHITE)
+            if(!this.board.reverted)
+       { if(this.color==Color.WHITE)
         {
           for(let i=0;i<8;i++)
               {
@@ -73,7 +74,29 @@ export class Pawn extends Piece {
                      possiblePoints.push(new Point(3,i));
                     }
                 }
-            }
+            }}
+
+            if(this.board.reverted)
+                { if(this.color==Color.WHITE)
+                 {
+                   for(let i=0;i<8;i++)
+                       {
+                          if (this.board.isFieldEmpty(3,i))
+                           {
+                           possiblePoints.push(new Point(3,i));
+                           }
+                        }
+                 }
+                 if(this.color==Color.BLACK)
+                 {
+                     for(let i=0;i<8;i++)
+                     {
+                         if (this.board.isFieldEmpty(8,i))
+                             {
+                              possiblePoints.push(new Point(8,i));
+                             }
+                         }
+                     }}
             
         }
         
@@ -85,7 +108,8 @@ export class Pawn extends Piece {
         const row = this.point.row;
         const col = this.point.col;
         if(this.board.gamestart)
-        {if (
+        {
+            if (
             (!this.board.reverted && this.color === Color.WHITE) ||
             (this.board.reverted && this.color === Color.BLACK)
         ) {
