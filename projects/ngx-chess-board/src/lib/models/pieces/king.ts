@@ -27,7 +27,7 @@ export class King extends Piece {
         const row = this.point.row;
         const col = this.point.col;
         // lewo
-        if(col!=8  && this.board.addedpiece==32)
+        if(col!=8  && this.board.gamestart)
             {
         if (
             this.board.isFieldEmpty(row, col - 1) &&
@@ -226,7 +226,7 @@ export class King extends Piece {
         const row = this.point.row;
         const col = this.point.col;
 
-        if(this.board.addedpiece==32)
+        if(this.board.gamestart)
         // lewo
        { if (
             this.board.isFieldTakenByEnemy(

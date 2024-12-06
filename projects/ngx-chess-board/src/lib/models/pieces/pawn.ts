@@ -20,7 +20,7 @@ export class Pawn extends Piece {
         const possiblePoints = [];
         const row = this.point.row;
         const col = this.point.col;
-        if(col!=8  && this.board.addedpiece==32){
+        if(col!=8  && this.board.gamestart){
         if (
             (!this.board.reverted && this.color === Color.WHITE) ||
             (this.board.reverted && this.color === Color.BLACK)
@@ -84,7 +84,7 @@ export class Pawn extends Piece {
         const possiblePoints = [];
         const row = this.point.row;
         const col = this.point.col;
-        if(this.board.addedpiece==32)
+        if(this.board.gamestart)
         {if (
             (!this.board.reverted && this.color === Color.WHITE) ||
             (this.board.reverted && this.color === Color.BLACK)

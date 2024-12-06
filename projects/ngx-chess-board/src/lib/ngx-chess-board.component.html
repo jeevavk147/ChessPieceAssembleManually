@@ -76,7 +76,12 @@
                         [ngClass]="'piece'"
                         [style.font-size]="pieceSize + 'px'" > </div> </div>
             </div> <!--col close -->
-            
+
+            <h3 *ngIf="i===0 && !engineFacade.board.reverted">{{engineFacade.user2}}</h3>
+            <h3 *ngIf="i===9 && !engineFacade.board.reverted" style="padding-top: 20px;">{{engineFacade.user1}}</h3>
+            <h3 *ngIf="i===9 && engineFacade.board.reverted" style="padding-top: 20px;">{{engineFacade.user2}}</h3>
+            <h3 *ngIf="i===0 && engineFacade.board.reverted" >{{engineFacade.user1}}</h3>
+
       </div> <!--rowclose -->
 
       <input type="checkbox" id="check" [(ngModel)]="isChecked">

@@ -22,7 +22,7 @@ export class Knight extends Piece {
         const row = this.point.row;
         const col = this.point.col;
 
-        if(col!=8  && this.board.addedpiece==32)
+        if(col!=8  && this.board.gamestart)
             {
         // gora -> lewo
         if (this.board.isFieldEmpty(row - 2, col - 1)) {
@@ -97,7 +97,7 @@ export class Knight extends Piece {
 
         const row = this.point.row;
         const col = this.point.col;
-        if(this.board.addedpiece==32)
+        if(this.board.gamestart)
         // gora -> lewo
         {if (
             this.board.isFieldTakenByEnemy(

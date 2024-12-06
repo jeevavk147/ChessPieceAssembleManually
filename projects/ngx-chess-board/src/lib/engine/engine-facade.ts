@@ -259,8 +259,7 @@ export class EngineFacade extends AbstractEngineFacade {
             pointClicked.col
         );
 
-        if (this.freeMode||!this.gamestart) {
-            this.freeMode=!this.gamestart
+        if (this.freeMode||!this.board.gamestart) {
             if (pieceClicked) {
                 if (event.ctrlKey) {
                     this.board.pieces = this.board.pieces.filter(e => e !== pieceClicked);
@@ -361,7 +360,7 @@ export class EngineFacade extends AbstractEngineFacade {
             destPiece
         );
         
-        if (destPiece && toMovePiece.color === destPiece.color ||(destPiece && toMovePiece.color !== destPiece.color && !this.gamestart)) {
+        if (destPiece && toMovePiece.color === destPiece.color ||(destPiece && toMovePiece.color !== destPiece.color && !this.board.gamestart)) {
             return;
         }
 
@@ -382,7 +381,7 @@ export class EngineFacade extends AbstractEngineFacade {
         );
         this.moveHistoryProvider.addMove(this.historyMoveCandidate);
 
-        if (toMovePiece instanceof King )  {
+        if (toMovePiece instanceof King && this.board.gamestart)  {
             const squaresMoved = Math.abs(newPoint.col - toMovePiece.point.col);
             if (squaresMoved > 1) {
                 if (newPoint.col < 3) {
@@ -427,7 +426,7 @@ export class EngineFacade extends AbstractEngineFacade {
             return;
         }
 
-        if ((toPromotePiece.point.row === 2 || toPromotePiece.point.row === 9) && this.gamestart) {
+        if ((toPromotePiece.point.row === 2 || toPromotePiece.point.row === 9) && this.board.gamestart) {
             this.board.pieces = this.board.pieces.filter(
                 (piece) => piece !== toPromotePiece
             );
@@ -462,8 +461,8 @@ export class EngineFacade extends AbstractEngineFacade {
                 ++this.board.addedpiece
                 if(this.board.addedpiece==32)
                     {
-                        this.gamestart=true
-                        this.freeMode=!this.gamestart
+                        this.board.gamestart=true
+                        this.freeMode=!this.board.gamestart
                         this.board.currentWhitePlayer=true
                     }
                 if(this.board.activePiece instanceof Pawn)

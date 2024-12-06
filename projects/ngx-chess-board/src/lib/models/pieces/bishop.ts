@@ -20,7 +20,7 @@ export class Bishop extends Piece {
 
         const row = this.point.row;
         const col = this.point.col;
-        if(col!=8 && this.board.addedpiece==32)
+        if(col!=8 && this.board.gamestart)
         {
         for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
@@ -118,7 +118,7 @@ export class Bishop extends Piece {
 
         const row = this.point.row;
         const col = this.point.col;
-        if(this.board.addedpiece==32)
+        if(this.board.gamestart)
         {
             for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna

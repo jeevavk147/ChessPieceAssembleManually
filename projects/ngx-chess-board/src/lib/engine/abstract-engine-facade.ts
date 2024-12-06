@@ -29,7 +29,6 @@ export abstract class AbstractEngineFacade {
     public heightAndWidth: number = Constants.DEFAULT_SIZE;
 
     public freeMode = false;
-    public gamestart=false
     public dragDisabled: boolean;
     public drawDisabled: boolean;
     public lightDisabled: boolean;
@@ -48,7 +47,8 @@ export abstract class AbstractEngineFacade {
      piececapture: Piece[]=[]
      setcapture=new Set()
      
-
+     user1="User-1"
+     user2="User-2"
 
     protected constructor(board: Board) {
         this.board = board;

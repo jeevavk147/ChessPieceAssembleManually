@@ -14,6 +14,7 @@ export class Board {
     pieces: Piece[] = [];
     addedpiece:number=0
     placecount=new Map<number,number>()
+    gamestart=false
 
     enPassantPoint: Point = null;
     enPassantPiece: Piece = null;
@@ -83,6 +84,8 @@ export class Board {
         this.enPassantPiece = null;
         this.fullMoveCount = 1;
         this.calculateFEN();
+        this.addedpiece=0
+        this.gamestart=false
     }
 
         reverse() {
@@ -92,7 +95,6 @@ export class Board {
         this.possibleCaptures = [];
 
         this.pieces.forEach((piece: Piece) => this.reversePoint(piece.point));
-
         this.reversePoint(this.lastMoveSrc);
         this.reversePoint(this.lastMoveDest);
 
