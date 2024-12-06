@@ -12,8 +12,6 @@ import { Rook } from './pieces/rook';
 export class Board {
     board: number[][] = [];
     pieces: Piece[] = [];
-    startpiece=[]
-    customboard:number[][]=[]
     addedpiece:number=0
     placecount=new Map<number,number>()
 
@@ -67,6 +65,7 @@ export class Board {
     }
 
     isPointInPossibleCaptures(point: Point): boolean {
+        
         return this.possibleCaptures.some((capture) => capture.row === point.row && capture.col === point.col);
     }
 
@@ -137,14 +136,7 @@ export class Board {
         return this.pieces.find((piece) => piece.point.col === col && piece.point.row === row);
     }
 
-    getstartPieceByField(row: number, col: number): Piece {
-        if (this.isFieldEmpty(row, col)) {
-            //   throw new Error('Piece not found');
-            return undefined;
-        }
-
-        return this.startpiece.find((piece) => piece.point.col === col && piece.point.row === row);
-    }
+    
 
     isKingInCheck(color: Color, pieces: Piece[]): boolean {
         const king = pieces.find((piece) => piece.color === color && piece instanceof King);

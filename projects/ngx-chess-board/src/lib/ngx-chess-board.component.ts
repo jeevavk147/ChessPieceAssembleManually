@@ -69,7 +69,7 @@ export class NgxChessBoardComponent
     boardLoader: BoardLoader;
     pieceIconManager: PieceIconInputManager;
     startTransition = '';
-    count=5
+    isDragging = false;
     
     engineFacade: AbstractEngineFacade;
 
@@ -152,9 +152,11 @@ export class NgxChessBoardComponent
         for(let i = 0; i < 8; ++i) {
             this.matr[i]=0
         }
-        // this.engineFacade.boardLoader.addPieces()
         this.custompiece=DefaultPiecesLoader.pieces
-        console.log(this.engineFacade.board.startpiece)
+        for(let i=0;i<12;i++)
+        {
+            this.iconposition.set(8+i,0)
+        }
     }
 
     ngAfterViewInit(): void {
@@ -177,11 +179,16 @@ export class NgxChessBoardComponent
         this.engineFacade.coords.reverse();
     }
 
+    iconposition=new Map<number,number>()
+       
+
+    iconloop(piece)
+    {
+       
+    }
+
     setplacecount(i,j)
     {
-        // setTimeout(() => {
-            
-        // }, 1000);
         this.engineFacade.board.placecount.delete(i+j)
         let row=i
         let col=j
@@ -209,13 +216,11 @@ export class NgxChessBoardComponent
             this.engineFacade.board.getPieceByField(k-8,8).point=new Point(row,col)
             
         }
-        // this.engineFacade.board.getstartPieceByField(this.engineFacade.board.lastMoveSrc.row,8).point.col=9
-        // this.engineFacade.board.getstartPieceByField(k-8,8).point=new Point(row,col)
         this.engineFacade.board.placecount.set(k+1,this.engineFacade.board.placecount.get(k))
         row--
        }
        this.engineFacade.board.placecount.set(++moved,0)
-      }
+    }
 
 
     }
@@ -262,27 +267,16 @@ export class NgxChessBoardComponent
     }
 
     dragEnded(event: CdkDragEnd): void {
-        this.engineFacade.isDragging = false;
-        let place=this.engineFacade.board.lastMoveSrc.row+this.engineFacade.board.lastMoveSrc.col
-        // if(this.engineFacade.board.placecount.get(place) > 0 )
-        // {
-        //     this.engineFacade.dragEndStrategy.process(
-        //     event,
-        //     false,
-        //     this.startTransition
-        // );}
-        // else
-        {
+        this.isDragging = false;        
             this.engineFacade.dragEndStrategy.process(
                 event,
                 this.engineFacade.moveDone,
                 this.startTransition
-            );
-        }   
+            );  
      }
 
     dragStart(event: CdkDragStart): void {
-        this.engineFacade.isDragging = true;
+        this.isDragging = true;
         let trans = event.source.getRootElement().style.transform.split(') ');
         //   this.startTrans= trans;
         this.startTransition = trans.length === 2 ? trans[1] : trans[0];

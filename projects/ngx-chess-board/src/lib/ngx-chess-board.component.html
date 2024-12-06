@@ -8,7 +8,7 @@
     #boardRef
 >
     <div id="drag">
-        <ng-container *ngFor="let piece of engineFacade.board.pieces; let i = index">
+        <ng-container *ngFor="let piece of engineFacade.board.pieces.reverse(); let i = index">
         <div
             [cdkDragDisabled]="engineFacade.dragDisabled"
             (cdkDragEnded)="dragEnded($event)"
@@ -28,7 +28,7 @@
         >
         </div>
     </ng-container>
-    <!-- <ng-container *ngFor="let piece of engineFacade.board.startpiece; let i = index">
+    <!-- <ng-container *ngFor="let piece of engineFacade.board.startpiece;">
         <div
             [cdkDragDisabled]="engineFacade.dragDisabled"
             (cdkDragEnded)="dragEnded($event)"
@@ -80,6 +80,11 @@
                 <span class="yCoord" style="color: black;" *ngIf="j===8 && engineFacade.board.placecount.get(i+j)==0">
                     {{ setplacecount(i,j) }}
                 </span>
+                <!-- <span class="yCoord"  style="color: black;" 
+                *ngIf="j===8 && engineFacade.board.placecount.get(i+j)==0"
+                [innerHTML]="">
+                    
+                </span> -->
                 <span
                     class="xCoord"
                     [style.color]="(j % 2 === 0) ? lightTileColor : darkTileColor"

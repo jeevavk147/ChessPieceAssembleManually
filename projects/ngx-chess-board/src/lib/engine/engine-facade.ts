@@ -149,6 +149,7 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     prepareActivePiece(pieceClicked: Piece, pointClicked: Point) {
+        console.log("prepare active piece")
         this.board.activePiece = pieceClicked;
         this._selected = true;
         this.board.possibleCaptures = new AvailableMoveDecorator(
@@ -360,15 +361,18 @@ export class EngineFacade extends AbstractEngineFacade {
             newPoint,
             destPiece
         );
+        
+        if (destPiece && toMovePiece.color === destPiece.color ||(destPiece && toMovePiece.color !== destPiece.color && !this.gamestart)) {
+            return;
+        }
 
-        if (destPiece && toMovePiece.color !== destPiece.color) {
+        else {
+            if (destPiece && toMovePiece.color !== destPiece.color ) {
             this.board.pieces = this.board.pieces.filter(
                 (piece) => piece !== destPiece
             );
-        } else {
-            if (destPiece && toMovePiece.color === destPiece.color) {
-                return;
-            }
+        } 
+            
         }
 
         this.historyMoveCandidate = new HistoryMove(
