@@ -15,16 +15,6 @@ export class DefaultPiecesLoader {
 static loadDefaultPieces(board: Board) {
     board.pieces = [];
 
-    // piony czarne
-    for (let i = 0; i < 8; ++i) {
-        let pawn=new Pawn(
-            new Point(0, 8),
-            Color.BLACK,
-            UnicodeConstants.BLACK_PAWN,
-            board
-        )
-        board.pieces.push(pawn);
-    }
     board.placecount.set(8,8)
     board.placecount.set(9,2)
     board.placecount.set(10,2)
@@ -38,6 +28,17 @@ static loadDefaultPieces(board: Board) {
     board.placecount.set(17,2)
     board.placecount.set(18,1)
     board.placecount.set(19,1)
+    
+    // piony czarne
+    for (let i = 0; i < 8; ++i) {
+        board.pieces.push(new Pawn(
+            new Point(0, 8),
+            Color.BLACK,
+            UnicodeConstants.BLACK_PAWN,
+            board
+        ));
+    }
+   
     board.pieces.push(new Rook(
         new Point(1, 8),
         Color.BLACK,
