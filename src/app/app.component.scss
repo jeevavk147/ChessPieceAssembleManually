@@ -6,28 +6,9 @@
     height: 100%;
 }
 
-.capture{
-    position: relative;
-    display: inline-block;
-    height: 12%;
-    width: 12.5%;
-    vertical-align: top;
-    cursor: default;
-}
 
-.piece{
-   // justify-content: center;
-    font-family: 'Courier New', serif;
-    // display: inline-block;
-    // margin-top: -5px;
-    position: absolute;
-    text-align: center;
-    font-size:280%;
-    height: 100%;
-    width: 100%;
-    color: black !important;
-    background-size: cover;
-}
+
+
 
 .switch {
     position: relative;

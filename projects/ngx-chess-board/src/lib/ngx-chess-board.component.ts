@@ -70,7 +70,8 @@ export class NgxChessBoardComponent
     pieceIconManager: PieceIconInputManager;
     startTransition = '';
     isDragging = false;
-    
+    public isChecked=false
+
     engineFacade: AbstractEngineFacade;
 
     randomId = (Math.random() + 1).toString(36).substring(7);

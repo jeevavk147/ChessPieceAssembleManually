@@ -149,7 +149,6 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     prepareActivePiece(pieceClicked: Piece, pointClicked: Point) {
-        console.log("prepare active piece")
         this.board.activePiece = pieceClicked;
         this._selected = true;
         this.board.possibleCaptures = new AvailableMoveDecorator(
@@ -511,8 +510,28 @@ export class EngineFacade extends AbstractEngineFacade {
             },
             freeMode: this.freeMode
         });
-        
+        let count=0
+        if(lastMove.x)
+        {
+            const lastBoard = this.getLastBoard();
+            const lastdest=this.board.lastMoveDest
+            const capturedPiece:Piece=lastBoard.getPieceByField(lastdest.row,lastdest.col)
+            this.piececapture.push(capturedPiece)
+            this.setcapture.add(capturedPiece.constant.icon)
+            count=this.calculatecount(capturedPiece)
+            this.capturedPieces.set(capturedPiece.constant.icon,count)
+        }
         this.moveDone = true;
+    }
+     calculatecount(capturedPiece: Piece):number{
+        let count=0
+        for(let i=0;i<this.piececapture.length;i++){
+            if(capturedPiece.constant.icon==this.piececapture[i].constant.icon)
+              { 
+                count++
+            } 
+        }  
+      return count
     }
 
     checkForPat(color: Color) {

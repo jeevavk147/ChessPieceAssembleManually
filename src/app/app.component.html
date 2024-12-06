@@ -1,4 +1,4 @@
-<div style="width:400px; height: 100%; margin-left: auto; margin-right: auto; padding-bottom: 100px;max-width: 100%;text-align: center;">
+<div  style="width:400px; height: 100%; margin-left: auto; margin-right: auto; padding-bottom: 100px;max-width: 100%;">
     <h2 style="text-align: center">ngx-chess-board example</h2>
     <ngx-chess-board  #board [size]="size" [lightTileColor]="lightTileColor" (moveChange)="moveCallback($event)"
                      [dragDisabled]="dragDisabled"
@@ -9,18 +9,7 @@
                      [freeMode]="freeMode"
     >
 </ngx-chess-board>
-<br><br>
-    <input type="checkbox" id="check" [(ngModel)]="isChecked" >
-    <label for="check">Show Captured Pieces</label>
-    <br>
-    <ng-container *ngIf="isChecked">
-    <div class="capture"  *ngFor="let key of setcapture; let i = index" 
-        [style.background-color]="(i % 2 === 0) ? lightTileColor : darkTileColor">
-        <div class="piece" [innerHTML]="key"></div>
-        <div style="color: black;text-align: start;">{{capturedPieces.get(key)}}</div>
-    </div>
-  </ng-container>
-    <!--<ngx-chess-board></ngx-chess-board> You can also use it like this  -->
+           <br><br>
     <hr>
     <label for="lightTile">Light tile color:</label>
     <div class="input-group">

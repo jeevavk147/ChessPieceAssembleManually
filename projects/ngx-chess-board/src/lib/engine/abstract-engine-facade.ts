@@ -44,6 +44,12 @@ export abstract class AbstractEngineFacade {
     public disabling = false;
     lastBoard: any;
 
+    public capturedPieces=new Map<any,number>()
+     piececapture: Piece[]=[]
+     setcapture=new Set()
+     
+
+
     protected constructor(board: Board) {
         this.board = board;
     }

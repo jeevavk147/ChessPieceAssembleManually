@@ -77,37 +77,11 @@ export class AppComponent {
             this.boardManager.setFEN(this.fen);
         }
     }
-     public capturedPieces=new Map<any,number>()
-     piececapture: Piece[]=[]
-     setcapture=new Set()
-     isChecked=false
-    calculatecount(capturedPiece: Piece):number{
-        let count=0
-        for(let i=0;i<this.piececapture.length;i++){
-            if(capturedPiece.constant.icon==this.piececapture[i].constant.icon)
-              { 
-                count++
-            } 
-        }  
-      return count
-    }
+     
     public moveCallback(move: MoveChange): void {
-        let count=0
-        if(move.x)
-        {
-            const lastBoard = this.boardManager.engineFacade.getLastBoard();
-            const lastdest=this.boardManager.engineFacade.board.lastMoveDest
-            const capturedPiece:Piece=lastBoard.getPieceByField(lastdest.row,lastdest.col)
-            this.piececapture.push(capturedPiece)
-            this.setcapture.add(capturedPiece.constant.icon)
-            count=this.calculatecount(capturedPiece)
-            this.capturedPieces.set(capturedPiece.constant.icon,count)
-            console.log(this.capturedPieces)
-            console.log(this.piececapture)
-        }
+        
         this.fen = this.boardManager.getFEN();
         this.pgn = this.boardManager.getPGN();
-        // console.log(move);
         }
         
 
