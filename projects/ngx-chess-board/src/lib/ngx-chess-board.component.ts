@@ -83,7 +83,6 @@ export class NgxChessBoardComponent
              
         );
     }
-    matr:number[] = [];
     custompiece:Piece[]=[]
     @Input('size')
     public set size(size: number) {
@@ -150,9 +149,6 @@ export class NgxChessBoardComponent
     }
 
     ngOnInit() {
-        for(let i = 0; i < 8; ++i) {
-            this.matr[i]=0
-        }
         this.custompiece=DefaultPiecesLoader.pieces
         for(let i=0;i<12;i++)
         {
