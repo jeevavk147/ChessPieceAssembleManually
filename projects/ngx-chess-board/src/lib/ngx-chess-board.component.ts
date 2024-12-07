@@ -149,7 +149,6 @@ export class NgxChessBoardComponent
     }
 
     ngOnInit() {
-        console.log(this.engineFacade.board.pieces.reverse())
     }
 
     ngAfterViewInit(): void {
