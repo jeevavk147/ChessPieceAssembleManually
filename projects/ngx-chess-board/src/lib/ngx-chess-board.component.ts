@@ -149,11 +149,6 @@ export class NgxChessBoardComponent
     }
 
     ngOnInit() {
-        this.custompiece=DefaultPiecesLoader.pieces
-        for(let i=0;i<12;i++)
-        {
-            this.iconposition.set(8+i,0)
-        }
         console.log(this.engineFacade.board.pieces.reverse())
     }
 
@@ -175,14 +170,6 @@ export class NgxChessBoardComponent
         this.selected = false;
         this.engineFacade.board.reverse();
         this.engineFacade.coords.reverse();
-    }
-
-    iconposition=new Map<number,number>()
-       
-
-    iconloop(piece)
-    {
-       
     }
 
     setplacecount(i,j)

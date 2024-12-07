@@ -11,9 +11,9 @@ import { Rook } from '../../../models/pieces/rook';
 import { UnicodeConstants } from '../../../utils/unicode-constants';
 
 export class DefaultPiecesLoader {
-    static pieces: Piece[]=[];
 static loadDefaultPieces(board: Board) {
     board.pieces = [];
+
 
     board.placecount.set(8,8)
     board.placecount.set(9,2)
@@ -28,7 +28,8 @@ static loadDefaultPieces(board: Board) {
     board.placecount.set(17,2)
     board.placecount.set(18,1)
     board.placecount.set(19,1)
-    
+
+
     // piony czarne
     for (let i = 0; i < 8; ++i) {
         board.pieces.push(new Pawn(

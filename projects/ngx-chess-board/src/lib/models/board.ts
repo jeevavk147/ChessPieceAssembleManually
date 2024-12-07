@@ -12,6 +12,7 @@ import { Rook } from './pieces/rook';
 export class Board {
     board: number[][] = [];
     pieces: Piece[] = [];
+    startpieces:Piece[]=[]
     addedpiece:number=0
     placecount=new Map<number,number>()
     gamestart=false
