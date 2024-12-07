@@ -158,6 +158,7 @@ export class NgxChessBoardComponent
         {
             this.iconposition.set(8+i,0)
         }
+        console.log(this.engineFacade.board.pieces.reverse())
     }
 
     ngAfterViewInit(): void {

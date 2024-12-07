@@ -28,21 +28,15 @@ static loadDefaultPieces(board: Board) {
     board.placecount.set(17,2)
     board.placecount.set(18,1)
     board.placecount.set(19,1)
-
+    
     // piony czarne
     for (let i = 0; i < 8; ++i) {
-        // board.pieces.push(new Pawn(
-        //     new Point(0, 8),
-        //     Color.BLACK,
-        //     UnicodeConstants.BLACK_PAWN,
-        //     board
-        // ));
-        board.pieces[i]=new Pawn(
+        board.pieces.push(new Pawn(
             new Point(0, 8),
             Color.BLACK,
             UnicodeConstants.BLACK_PAWN,
             board
-        )
+        ));
     }
    
     board.pieces.push(new Rook(
