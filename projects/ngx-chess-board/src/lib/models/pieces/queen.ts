@@ -23,7 +23,7 @@ export class Queen extends Piece {
 
         if(col!=8  && this.board.gamestart)
             {
-        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -32,7 +32,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -41,7 +41,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -50,7 +50,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -59,7 +59,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1; i < 8; ++i) {
+        for (let i = row + 1; i < 10; ++i) {
             // dol
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -68,7 +68,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -142,7 +142,7 @@ export class Queen extends Piece {
         const row = this.point.row;
         const col = this.point.col;
         if(this.board.gamestart)
-        {for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        {for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -160,7 +160,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -178,7 +178,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -196,7 +196,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (
                 this.board.isFieldTakenByEnemy(
@@ -213,7 +213,7 @@ export class Queen extends Piece {
                 }
             }
         }
-        for (let i = row + 1; i < 8; ++i) {
+        for (let i = row + 1; i < 10; ++i) {
             // dol
             if (
                 this.board.isFieldTakenByEnemy(
@@ -231,7 +231,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (
                 this.board.isFieldTakenByEnemy(
@@ -293,7 +293,7 @@ export class Queen extends Piece {
         const row = this.point.row;
         const col = this.point.col;
 
-        for (let i = row + 1; i < 8; ++i) {
+        for (let i = row + 1; i < 10; ++i) {
             // dol
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -305,7 +305,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1; i >= 0; --i) {
+        for (let i = row - 1; i >= 2; --i) {
             // gora
             if (this.board.isFieldEmpty(i, col)) {
                 possiblePoints.push(new Point(i, col));
@@ -341,7 +341,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j) {
+        for (let i = row - 1, j = col - 1; i >= 2 && j >= 0; --i, --j) {
             // lewa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -353,7 +353,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row - 1, j = col + 1; i >= 0 && j < 8; --i, ++j) {
+        for (let i = row - 1, j = col + 1; i >= 2 && j < 8; --i, ++j) {
             // prawa gorna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -365,7 +365,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col - 1; i < 8 && j >= 0; ++i, --j) {
+        for (let i = row + 1, j = col - 1; i < 10 && j >= 0; ++i, --j) {
             // lewa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
@@ -377,7 +377,7 @@ export class Queen extends Piece {
             }
         }
 
-        for (let i = row + 1, j = col + 1; i < 8 && j < 8; ++i, ++j) {
+        for (let i = row + 1, j = col + 1; i < 10 && j < 8; ++i, ++j) {
             // prawa dolna przekatna
             if (this.board.isFieldEmpty(i, j)) {
                 possiblePoints.push(new Point(i, j));
