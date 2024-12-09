@@ -46,10 +46,12 @@ export abstract class AbstractEngineFacade {
     public capturedPieces=new Map<any,number>()
      piececapture: Piece[]=[]
      setcapture=new Set()
-     
-     user1="User-1"
-     user2="User-2"
-
+     user1=''
+     user2=""
+     whitetotalsec=600
+     blacktotalsec=600
+     abstract starttimer():void
+     abstract endtimer():void
     protected constructor(board: Board) {
         this.board = board;
     }

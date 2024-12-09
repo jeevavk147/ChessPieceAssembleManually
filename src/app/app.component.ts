@@ -82,6 +82,7 @@ export class AppComponent {
         
         this.fen = this.boardManager.getFEN();
         this.pgn = this.boardManager.getPGN();
+        console.log(move)
         }
         
 

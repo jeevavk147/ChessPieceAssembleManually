@@ -77,10 +77,30 @@
                         [style.font-size]="pieceSize + 'px'" > </div> </div>
             </div> <!--col close -->
 
-            <h3 *ngIf="i===0 && !engineFacade.board.reverted">{{engineFacade.user2}}</h3>
-            <h3 *ngIf="i===9 && !engineFacade.board.reverted" style="padding-top: 20px;">{{engineFacade.user1}}</h3>
-            <h3 *ngIf="i===9 && engineFacade.board.reverted" style="padding-top: 20px;">{{engineFacade.user2}}</h3>
-            <h3 *ngIf="i===0 && engineFacade.board.reverted" >{{engineFacade.user1}}</h3>
+            <h3 style="position: absolute;" *ngIf="i===0 && !engineFacade.board.reverted">
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3>
+            <h3 *ngIf="i===0 && !engineFacade.board.reverted">
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 && !engineFacade.board.reverted" >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3>
+            <h3 style="padding-top: 20px;" *ngIf="i===9 && !engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
+            <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 && engineFacade.board.reverted" >
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3>
+            <h3 style="padding-top: 20px;" *ngIf="i===9 && engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <h3 style="position: absolute;" *ngIf="i===0 && engineFacade.board.reverted" >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3>
+            <h3 *ngIf="i===0 && engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
 
       </div> <!--rowclose -->
 

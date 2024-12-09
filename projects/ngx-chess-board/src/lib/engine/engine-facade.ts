@@ -60,8 +60,37 @@ export class EngineFacade extends AbstractEngineFacade {
         this.pgnProcessor.reset();
     }
 
+    private setinterval
+    starttimer(){
+        if(this.board.currentWhitePlayer)
+            { 
+                this.setinterval =setInterval(() => {      
+                   this.whitetotalsec--
+                   if(this.whitetotalsec==0)
+                    {
+                        this.endtimer()
+                    }
+               }, 1000);
+           }
+           if(!this.board.currentWhitePlayer)
+            { 
+                this.setinterval =setInterval(() => {      
+                   this.blacktotalsec--
+                   if(this.blacktotalsec==0)
+                    {
+                        this.endtimer()
+                    }
+               }, 1000);
+           }
+    }
+
+    endtimer(){
+        clearInterval(this.setinterval);
+    }
+    
     public undo(): void {
-        this.board.addedpiece--
+        if(!this.board.gamestart)
+           { this.board.addedpiece--}
         if (!this.boardStateProvider.isEmpty()) {
             const lastBoard = this.boardStateProvider.pop().board;
             if (this.board.reverted) {
@@ -381,7 +410,7 @@ export class EngineFacade extends AbstractEngineFacade {
         );
         this.moveHistoryProvider.addMove(this.historyMoveCandidate);
 
-        if (toMovePiece instanceof King && this.board.gamestart)  {
+        if (toMovePiece instanceof King )  {
             const squaresMoved = Math.abs(newPoint.col - toMovePiece.point.col);
             if (squaresMoved > 1) {
                 if (newPoint.col < 3) {
@@ -389,7 +418,7 @@ export class EngineFacade extends AbstractEngineFacade {
                         toMovePiece.point.row,
                         0
                     );
-                    if (!this.freeMode) {
+                    if (!this.freeMode && this.board.gamestart) {
                         leftRook.point.col = this.board.reverted ? 2 : 3;
                     }
                 } else {
@@ -397,7 +426,7 @@ export class EngineFacade extends AbstractEngineFacade {
                         toMovePiece.point.row,
                         7
                     );
-                    if (!this.freeMode) {
+                    if (!this.freeMode && this.board.gamestart) {
                         rightRook.point.col = this.board.reverted ? 4 : 5;
                     }
                 }
@@ -449,7 +478,11 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     afterMoveActions(promotionIndex?: number) {
-       
+       if(this.board.gamestart)
+       {
+        this.endtimer()
+        this.starttimer()
+       }
         this.checkIfPawnFirstMove(this.board.activePiece);
         this.checkIfRookMoved(this.board.activePiece);
         this.checkIfKingMoved(this.board.activePiece);
@@ -462,8 +495,8 @@ export class EngineFacade extends AbstractEngineFacade {
                 if(this.board.addedpiece==32)
                     {
                         this.board.gamestart=true
-                        this.freeMode=!this.board.gamestart
                         this.board.currentWhitePlayer=true
+                        this.starttimer()
                     }
                 if(this.board.activePiece instanceof Pawn)
                     {
@@ -708,3 +741,4 @@ export class EngineFacade extends AbstractEngineFacade {
         }
     }
 }
+

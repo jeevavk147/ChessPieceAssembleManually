@@ -71,7 +71,6 @@ export class NgxChessBoardComponent
     startTransition = '';
     isDragging = false;
     public isChecked=false
-
     engineFacade: AbstractEngineFacade;
 
     randomId = (Math.random() + 1).toString(36).substring(7);
@@ -149,13 +148,23 @@ export class NgxChessBoardComponent
     }
 
     ngOnInit() {
+        // this.engineFacade.user1='Jeevanandham V'
+        // this.engineFacade.user2="Naveen Kumar R"
+       
     }
-
     ngAfterViewInit(): void {
         this.engineFacade.modal = this.modal;
         this.calculatePieceSize();
+        
     }
-
+    getabsmin(num)
+    {
+        return Math.floor(num/60)
+    }
+    getabssec(num)
+    {
+        return Math.abs(num%60)   
+    }
     onMouseUp(event: MouseEvent) {
         this.engineFacade.onMouseUp(
             event,
