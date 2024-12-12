@@ -24,7 +24,6 @@ import { MoveUtils } from '../utils/move-utils';
 import { MoveChange } from './outputs/move-change/move-change';
 import { PieceFactory } from './utils/piece-factory';
 import { signOut } from 'aws-amplify/auth';
-import { APIService } from 'src/app/apiservice.service';
 
 export class EngineFacade extends AbstractEngineFacade {
 
