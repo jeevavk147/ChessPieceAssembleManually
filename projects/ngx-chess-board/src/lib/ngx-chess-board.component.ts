@@ -150,7 +150,7 @@ export class NgxChessBoardComponent
     ngOnInit() {
         // this.engineFacade.user1='Jeevanandham V'
         // this.engineFacade.user2="Naveen Kumar R"
-       
+        this.engineFacade.starttimer()
     }
     ngAfterViewInit(): void {
         this.engineFacade.modal = this.modal;

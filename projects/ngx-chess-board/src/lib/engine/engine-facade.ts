@@ -23,8 +23,11 @@ import { PiecePromotionResolver } from '../piece-promotion/piece-promotion-resol
 import { MoveUtils } from '../utils/move-utils';
 import { MoveChange } from './outputs/move-change/move-change';
 import { PieceFactory } from './utils/piece-factory';
+import { signOut } from 'aws-amplify/auth';
+import { APIService } from 'src/app/apiservice.service';
 
 export class EngineFacade extends AbstractEngineFacade {
+
     public getLastBoard(): Board {
         return this.boardStateProvider.pop().board;
     }
@@ -64,21 +67,25 @@ export class EngineFacade extends AbstractEngineFacade {
     starttimer(){
         if(this.board.currentWhitePlayer)
             { 
-                this.setinterval =setInterval(() => {      
+                this.setinterval =setInterval(async () => {      
                    this.whitetotalsec--
                    if(this.whitetotalsec==0)
                     {
                         this.endtimer()
+                        await signOut()
+                        alert("Game Over!!")
                     }
                }, 1000);
            }
            if(!this.board.currentWhitePlayer)
             { 
-                this.setinterval =setInterval(() => {      
+                this.setinterval =setInterval(async () => {      
                    this.blacktotalsec--
                    if(this.blacktotalsec==0)
                     {
                         this.endtimer()
+                        await signOut()
+                        alert("Game Over!!")
                     }
                }, 1000);
            }
@@ -116,31 +123,39 @@ export class EngineFacade extends AbstractEngineFacade {
     }
 
     public move(coords: string) {
+       let coord=coords.split(/(\d+)/).filter(Boolean)
+       
         if (coords) {
             const sourceIndexes = MoveUtils.translateCoordsToIndex(
-                coords.substring(0, 2),
+               
+                coord[0],coord[1],
                 this.board.reverted
             );
-
+            
             const destIndexes = MoveUtils.translateCoordsToIndex(
-                coords.substring(2, 4),
+                coord[2],coord[3],
                 this.board.reverted
             );
 
+            
             const srcPiece = this.board.getPieceByPoint(
                 sourceIndexes.yAxis,
                 sourceIndexes.xAxis
             );
+            this.board.lastMoveSrc=new Point(sourceIndexes.yAxis,
+                sourceIndexes.xAxis)
+             this.board.lastMoveDest=new Point(destIndexes.yAxis,
+                destIndexes.xAxis)
 
             if (srcPiece) {
-                if (
-                    (this.board.currentWhitePlayer &&
-                        srcPiece.color === Color.BLACK) ||
-                    (!this.board.currentWhitePlayer &&
-                        srcPiece.color === Color.WHITE)
-                ) {
-                    return;
-                }
+                // if (
+                //     (this.board.currentWhitePlayer &&
+                //         srcPiece.color === Color.BLACK)  ||
+                //     (!this.board.currentWhitePlayer &&
+                //         srcPiece.color === Color.WHITE) 
+                // ) {
+                //     return;
+                // }
 
                 this.prepareActivePiece(srcPiece, srcPiece.point);
 
@@ -156,7 +171,7 @@ export class EngineFacade extends AbstractEngineFacade {
                     this.movePiece(
                         srcPiece,
                         new Point(destIndexes.yAxis, destIndexes.xAxis),
-                        coords.length === 5 ? +coords.substring(4, 5) : 0
+                        // coords.length === 5 ? +coords.substring(4, 5) : 0
                     );
 
                     this.board.lastMoveSrc = new Point(
@@ -196,8 +211,10 @@ export class EngineFacade extends AbstractEngineFacade {
 
     onPieceClicked(pieceClicked, pointClicked) {
         if (
-            (this.board.currentWhitePlayer && pieceClicked.color === Color.BLACK) ||
-            (!this.board.currentWhitePlayer && pieceClicked.color === Color.WHITE)
+            (this.board.currentWhitePlayer && pieceClicked.color === Color.BLACK )||
+            (!this.board.currentWhitePlayer && pieceClicked.color === Color.WHITE) ||
+            (this.board.currentWhitePlayer && pieceClicked.color === Color.WHITE && this.usercolor=='BLACK') ||
+            (!this.board.currentWhitePlayer && pieceClicked.color === Color.BLACK && this.usercolor=='WHITE')
         ) {
             return;
         }
@@ -294,7 +311,7 @@ export class EngineFacade extends AbstractEngineFacade {
                     this.board.pieces = this.board.pieces.filter(e => e !== pieceClicked);
                     return;
                 }
-                this.board.currentWhitePlayer = (pieceClicked.color === Color.WHITE);
+                this.board.currentWhitePlayer = (pieceClicked.color === Color.WHITE );
             }
         }
 
@@ -717,9 +734,10 @@ export class EngineFacade extends AbstractEngineFacade {
         colorInput: ColorInput,
         coords: string
     ) {
+    
         if (this.freeMode && coords && pieceTypeInput > 0 && colorInput > 0) {
             let indexes = MoveUtils.translateCoordsToIndex(
-                coords,
+                coords.substring(0,1),coords.substring(1),
                 this.board.reverted
             );
             let existing = this.board.getPieceByPoint(

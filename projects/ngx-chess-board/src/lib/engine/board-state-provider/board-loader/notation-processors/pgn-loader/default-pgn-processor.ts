@@ -258,7 +258,7 @@ export class DefaultPgnProcessor implements NotationProcessor {
     }
 
     protected movePiece(piece: Piece, board: Board, move: string) {
-        let indexes = MoveUtils.translateCoordsToIndex(move, board.reverted);
+        let indexes = MoveUtils.translateCoordsToIndex(move.substring(0,1),move.substring(1), board.reverted);
         piece.point.col = indexes.xAxis;
         piece.point.row = indexes.yAxis;
     }
@@ -300,7 +300,7 @@ export class DefaultPgnProcessor implements NotationProcessor {
     }
 
     private removePiece(coords: string, board: Board) {
-        let indexes = MoveUtils.translateCoordsToIndex(coords, board.reverted);
+        let indexes = MoveUtils.translateCoordsToIndex(coords.substring(0,1),coords.substring(1), board.reverted);
 
         board.pieces = board.pieces.filter(e => !e.point.isEqual(new Point(
             indexes.yAxis,

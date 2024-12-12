@@ -275,6 +275,9 @@ export class Board {
             point.row = Math.abs(point.row - 11);
             point.col = Math.abs(point.col - 7);
         }
+        // if (point && point.col==8) {
+        //     point.row = Math.abs(point.row - 11);
+        // }
     }
 
     public getPieceByPoint(row: number, col: number): Piece {

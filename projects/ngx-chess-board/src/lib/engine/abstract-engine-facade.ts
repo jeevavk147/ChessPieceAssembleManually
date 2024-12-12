@@ -48,14 +48,16 @@ export abstract class AbstractEngineFacade {
      setcapture=new Set()
      user1=''
      user2=""
+     usercolor;
      whitetotalsec=600
      blacktotalsec=600
+    userId: string;
      abstract starttimer():void
      abstract endtimer():void
     protected constructor(board: Board) {
         this.board = board;
     }
-
+    abstract movePiece(toMovePiece: Piece, newPoint: Point, promotionIndex?: number)
     public abstract reset(): void;
 
     public abstract undo(): void;
