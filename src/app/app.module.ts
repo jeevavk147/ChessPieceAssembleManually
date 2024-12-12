@@ -10,11 +10,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 
-import awsmobile from 'src/aws-exports'
-import { Amplify } from 'aws-amplify';
+
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import { provideHttpClient } from '@angular/common/http';
-Amplify.configure(awsmobile)
 
 @NgModule({
     declarations: [AppComponent, ActionsComponent, SettingsComponent, MovesComponent, FenComponent],
