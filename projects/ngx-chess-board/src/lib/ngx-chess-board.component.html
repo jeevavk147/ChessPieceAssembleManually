@@ -1,0 +1,163 @@
+<div
+    id="board"
+    [style.height.px]="engineFacade.heightAndWidth"
+    [style.width.px]="engineFacade.heightAndWidth"
+    (contextmenu)="!modal.opened && onContextMenu($event)"
+    (pointerdown)="!modal.opened && onMouseDown($event)"
+    (pointerup)="!modal.opened && onMouseUp($event)"
+    #boardRef
+>
+    <div id="drag" >
+        <ng-container *ngFor="let piece of engineFacade.board.pieces.slice().reverse(); let i = index">
+        <div
+            [cdkDragDisabled]="engineFacade.dragDisabled"
+            (cdkDragEnded)="dragEnded($event)"
+            (cdkDragMoved)="dragMoved($event)"
+            (cdkDragStarted)="dragStart($event)"
+            class="single-piece" 
+            [innerHTML]="engineFacade.pieceIconManager.isDefaultIcons() ? piece.constant.icon : ''"
+            [ngStyle]="engineFacade.pieceIconManager.isDefaultIcons() ? '' : getCustomPieceIcons(piece)"
+            [style.transform]="'translate3d(' + piece.point.col * pieceSize + 'px, ' + piece.point.row * pieceSize + 'px,0px)'"
+            [style.max-height]="pieceSize + 'px'"
+            [style.font-size]="pieceSize * 0.8 + 'px'"
+            [style.width]="pieceSize + 'px'"
+            [style.height]="pieceSize + 'px'"
+            cdkDrag
+            [style.--animation-duration]="animationDuration + 'ms'"
+            *ngIf="piece.point.col<9"
+        >
+        </div>
+    </ng-container>
+    
+           <div
+            class="board-row"
+            *ngFor="let row of engineFacade.board.board; let i = index"
+            >
+            <div
+                class="board-col"
+                [class.current-selection]="showActivePiece && engineFacade.board.isXYInActiveMove(i,j)"
+                [class.king-check]=" engineFacade.board.isKingChecked(engineFacade.board.getPieceByPoint(i,j))"
+                [class.point-circle]="engineFacade.board.isXYInPointSelection(i, j)"
+                [class.possible-capture]="showPossibleCaptures && engineFacade.board.isXYInPossibleCaptures(i, j)"
+                [class.possible-point]="engineFacade.board.isXYInPossibleMoves(i, j) && showLegalMoves"
+                [style.background-color]="getTileBackgroundColor(i, j)"
+                [style.border-left]="getbolderleftcolor(i,j)"
+                [style.border-bottom]="getbolderbottomcolor(i,j)"i
+                *ngFor="let col of row; let j = index"
+            >
+                
+                <span
+                    class="yCoord"
+                    [style.color]="(i % 2 === 0) ? lightTileColor : darkTileColor"
+                    [style.font-size.px]="pieceSize / 4"
+                    *ngIf="showCoords && j === 7 && i>1 && i<10"
+                >
+                    {{ engineFacade.coords.yCoords[i]-2 }}
+                </span>
+                <span class="yCoord" style="color: black;" *ngIf="j===8 && engineFacade.board.placecount.get(i+j)!=0">
+                    {{ engineFacade.board.placecount.get(i+j) }}
+                </span>
+                <span class="yCoord" style="color: black;" *ngIf="j===8 && engineFacade.board.placecount.get(i+j)==0">
+                    {{ setplacecount(i,j) }}
+                </span>
+                <span
+                    class="xCoord"
+                    [style.color]="(j % 2 === 0) ? lightTileColor : darkTileColor"
+                    [style.font-size.px]="pieceSize / 4"
+                    *ngIf="showCoords && i === 9"
+                >
+                    {{engineFacade.coords.xCoords[j]}}
+                </span>
+                <div
+                    *ngIf="engineFacade.board.getPieceByPoint(i, j) as piece"
+                     style="height:100%; width:100%"
+                >
+                    <div
+                        [ngClass]="'piece'"
+                        [style.font-size]="pieceSize + 'px'" > </div> </div>
+            </div> <!--col close -->
+            <h3 style="position: absolute;" *ngIf="i===0 ">
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3>
+            <h3 *ngIf="i===0 && !engineFacade.board.reverted">
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 " >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3>
+            <h3 style="padding-top: 20px;" *ngIf="i===9 && !engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
+            <!-- <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 && engineFacade.board.reverted" >
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3> -->
+            <h3 style="padding-top: 20px;" *ngIf="i===9 && engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <!-- <h3 style="position: absolute;" *ngIf="i===0 && engineFacade.board.reverted" >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3> -->
+            <h3 *ngIf="i===0 && engineFacade.board.reverted" >
+                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
+
+      </div> <!--rowclose -->
+      <input type="checkbox" id="check" [(ngModel)]="isChecked">
+            <label for="check" >Show Captured Pieces</label>
+            <br>
+            <ng-container *ngIf="isChecked"  >
+                <div class="capture"  *ngFor="let key of engineFacade.setcapture; let i = index" 
+                    [style.background-color]="(i % 2 === 0) ? lightTileColor : darkTileColor">
+                    <div class="piece" [innerHTML]="key"></div>
+                    <div style="color: black;text-align: right;">{{engineFacade.capturedPieces.get(key)}}</div>
+                </div>
+            </ng-container>    
+              
+    </div>
+    
+    <svg
+        [attr.height]="engineFacade.heightAndWidth"
+        [attr.width]="engineFacade.heightAndWidth"
+        style="position:absolute; top:0; pointer-events: none"
+    >
+        <defs *ngFor="let color of ['red', 'green', 'blue', 'orange']">
+            <marker
+                [id]="randomId + color + 'Arrow'"
+                markerHeight="13"
+                markerWidth="13"
+                orient="auto"
+                refX="9"
+                refY="6"
+            >
+                <path
+                    [style.fill]="color"
+                    d="M2,2 L2,11 L10,6 L2,2"
+                ></path>
+            </marker>
+        </defs>
+        <line
+            class="arrow"
+            [attr.marker-end]="'url(#' + randomId + arrow.end.color + 'Arrow)'"
+            [attr.stroke]="arrow.end.color"
+            [attr.x1]="arrow.start.x"
+            [attr.x2]="arrow.end.x"
+            [attr.y1]="arrow.start.y"
+            [attr.y2]="arrow.end.y"
+            *ngFor="let arrow of engineFacade.drawProvider.arrows$ | async"
+        ></line>
+        <circle
+            [attr.cx]="circle.drawPoint.x"
+            [attr.cy]="circle.drawPoint.y"
+            [attr.r]="engineFacade.heightAndWidth / 18"
+            [attr.stroke]="circle.drawPoint.color"
+            *ngFor="let circle of engineFacade.drawProvider.circles$ | async"
+            fill-opacity="0.0"
+            stroke-width="2"
+        ></circle>
+    </svg>
+    <app-piece-promotion-modal #modal
+                               [pieceIconInput]="engineFacade.pieceIconManager.pieceIconInput"
+                               [color]="engineFacade.board.getCurrentPlayerColor() ? 'white' : 'black'"></app-piece-promotion-modal>
+</div>
+
+

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ngxchessboardmaster-dev-c657c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::182399724890:role/amplify-ngxchessboardmaster-dev-c657c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::182399724890:role/amplify-ngxchessboardmaster-dev-c657c-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-ngxchessboardmaster-dev-c657c-deployment",
+      "UnauthRoleName": "amplify-ngxchessboardmaster-dev-c657c-unauthRole",
+      "StackName": "amplify-ngxchessboardmaster-dev-c657c",
+      "StackId": "arn:aws:cloudformation:ap-south-1:182399724890:stack/amplify-ngxchessboardmaster-dev-c657c/99b53170-b612-11ef-884b-0a56d6f37225",
+      "AmplifyAppId": "dcqs4w0981be0"
+    },
+    "categories": {
+      "auth": {
+        "ngxchessboardmaster224a1400": {}
+      }
+    }
+  }
+}
