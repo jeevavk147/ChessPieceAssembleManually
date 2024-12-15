@@ -81,6 +81,9 @@ export class MainComponent implements OnInit, OnChanges{
         case 'signedOut':
           this.delete()
           break;
+        case 'signInWithRedirect':
+         this.currentAuthenticatedUser()
+         break;  
       }
     });
 }
