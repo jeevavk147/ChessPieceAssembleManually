@@ -73,19 +73,7 @@ export class MainComponent implements OnInit, OnChanges{
               }
           }) 
       
-    //auth event
-    Hub.listen('auth', ({ payload }) => {
-      switch (payload.event) {
-        case 'signedIn':
-          break;
-        case 'signedOut':
-          this.delete()
-          break;
-        case 'signInWithRedirect':
-         this.currentAuthenticatedUser()
-         break;  
-      }
-    });
+   
 }
 
 async  handleSignOut() {
@@ -127,6 +115,20 @@ delete(): void {
 
     //http serveice
     this.currentAuthenticatedUser()
+
+     //auth event
+     Hub.listen('auth', ({ payload }) => {
+        switch (payload.event) {
+          case 'signedIn':
+            break;
+          case 'signedOut':
+            this.delete()
+            break;
+          case 'signInWithRedirect':
+            this.currentAuthenticatedUser()
+            break;  
+        }
+      });
     
 }
   @ViewChild('board')
