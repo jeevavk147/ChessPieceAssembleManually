@@ -90,7 +90,7 @@ export abstract class AbstractEngineFacade {
     ): void;
 
     public checkIfPawnFirstMove(piece: Piece) {
-      if (piece instanceof Pawn && this.board.addedpiece==32) 
+      if (piece instanceof Pawn && this.board.gamestart) 
           {
             piece.isMovedAlready = true;
           }
@@ -98,13 +98,13 @@ export abstract class AbstractEngineFacade {
     }
 
     public checkIfRookMoved(piece: Piece) {
-        if (piece instanceof Rook && this.board.addedpiece==32)  {
+        if (piece instanceof Rook && this.board.gamestart)  {
             piece.isMovedAlready = true;
         }
     }
 
     public checkIfKingMoved(piece: Piece ) {
-        if (piece instanceof King && this.board.addedpiece==32) {
+        if (piece instanceof King && this.board.gamestart) {
             piece.isMovedAlready = true;
         }
     }

@@ -16,7 +16,7 @@ export class Point {
     }
 
     isInRange(): boolean {
-        return this.row >= 2 && this.row <= 9 && this.col >= 0 && this.col <= 7;
+        return this.row >= 1 && this.row <= 8 && this.col >= 0 && this.col <= 7;
     }
 
     clone() {

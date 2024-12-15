@@ -55,34 +55,15 @@ export class MoveUtils {
              let destX 
              if(sourcePoint.col < 8)
                 {
-                    // if(destPoint.col == 3 && destPoint.row == 2 ||
-                    //     destPoint.col == 4 && destPoint.row == 2 || 
-                    //     destPoint.col == 3 && destPoint.row == 9 ||
-                    //     destPoint.col == 4 && destPoint.row == 9)
-                    //     {
-                    //         destX=destPoint.col+97
-                    //     }
-                    //  else{
-                        destX= 104-destPoint.col
-                    //  } 
+                    destX= 104-destPoint.col
                     sourceX= 104 - sourcePoint.col;
                 }
                 srcpointrow=(sourcePoint.row + 1)
              if(sourcePoint.col == 8)
                {
                 sourceX=sourcePoint.col + 97
-                srcpointrow=Math.abs(sourcePoint.row - 11) + 1
-                
-                // if(destPoint.col == 3 && destPoint.row == 2 ||
-                //     destPoint.col == 4 && destPoint.row == 2 || 
-                //     destPoint.col == 3 && destPoint.row == 9 ||
-                //     destPoint.col == 4 && destPoint.row == 9)
-                //     {
-                    //     destX=destPoint.col+97
-                    // }
-                //  else{
+                srcpointrow=Math.abs(sourcePoint.row - 9) + 1
                     destX= 104-destPoint.col
-                //  }   
               } 
              
              
@@ -96,9 +77,9 @@ export class MoveUtils {
             const incrementX = 97;
             return (
                 String.fromCharCode(sourcePoint.col + incrementX) +
-                (Math.abs(sourcePoint.row - 11) + 1) +
+                (Math.abs(sourcePoint.row - 9) + 1) +
                 String.fromCharCode(destPoint.col + incrementX) +
-                (Math.abs(destPoint.row - 11) + 1)
+                (Math.abs(destPoint.row - 9) + 1)
             );
         }
     }
@@ -109,32 +90,19 @@ export class MoveUtils {
         if (reverted ) {
             if(x.charCodeAt(0) - 97 < 8)
             { 
-            // console.log( Math.abs( Number(y) - 12),(x.charCodeAt(0) - 97 == 4) )
-            // if(x.charCodeAt(0) - 97 == 3 && Math.abs( Number(y) - 12) == 2 ||
-            // x.charCodeAt(0) - 97 == 4  && Math.abs( Number(y) - 12) == 2 || 
-            // x.charCodeAt(0) - 97 == 3 && Math.abs( Number(y) - 12) == 9 ||
-            // x.charCodeAt(0) - 97 == 4 && Math.abs( Number(y) - 12) == 9 )
-            // {
-            //     // console.log('calleddd',x.charCodeAt(0))
-            //     xAxis =x.charCodeAt(0)-97
-            // }
-            // else
-            // {
                 xAxis = 104 - x.charCodeAt(0);
-            // }
             yAxis = Number(y) - 1;
             }
           if(x.charCodeAt(0) - 97==8)
             { 
              xAxis = x.charCodeAt(0) - 97;
-             yAxis = Math.abs( Number(y) - 12);
+             yAxis = Math.abs( Number(y) - 10);
             }
         } 
         else {
             xAxis = x.charCodeAt(0) - 97;
-            yAxis = Math.abs( Number(y) - 12);
+            yAxis = Math.abs( Number(y) - 10);
         }
-        // console.log(yAxis,xAxis)
 
         return new MoveTranslation(xAxis, yAxis, reverted);
     }

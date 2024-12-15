@@ -1,5 +1,5 @@
 <div  style="width:400px; height: 100%; margin-left: auto; margin-right: auto; padding-bottom: 100px;max-width: 100%;">
-    <h3 style="text-align: center;">welcome {{username}} You are {{usercolor}}</h3>
+    <h3 style="text-align: center;">welcome {{username}} You are {{usercolor}}</h3><br>
     <ngx-chess-board  #board [size]="size" [lightTileColor]="lightTileColor" (moveChange)="moveCallback($event)"
                      [dragDisabled]="dragDisabled"
                      [drawDisabled]="drawDisabled"

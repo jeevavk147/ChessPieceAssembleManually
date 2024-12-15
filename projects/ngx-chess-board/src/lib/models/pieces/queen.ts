@@ -101,16 +101,16 @@ export class Queen extends Piece {
         {{
         if(this.color==Color.BLACK)
         {
-            if (this.board.isFieldEmpty(2,3))
+            if (this.board.isFieldEmpty(1,3))
                 {
-                possiblePoints.push(new Point(2,3));
+                possiblePoints.push(new Point(1,3));
                 }         
         }
         if(this.color==Color.WHITE) 
          {
-            if (this.board.isFieldEmpty(9,3))
+            if (this.board.isFieldEmpty(8,3))
                 {
-                possiblePoints.push(new Point(9,3));
+                possiblePoints.push(new Point(8,3));
                 } 
          }      
         }}
@@ -119,16 +119,16 @@ export class Queen extends Piece {
             {{
             if(this.color==Color.BLACK)
             {
-                if (this.board.isFieldEmpty(9,4))
+                if (this.board.isFieldEmpty(8,4))
                     {
-                    possiblePoints.push(new Point(9,4));
+                    possiblePoints.push(new Point(8,4));
                     }         
             }
             if(this.color==Color.WHITE) 
              {
-                if (this.board.isFieldEmpty(2,4))
+                if (this.board.isFieldEmpty(1,4))
                     {
-                    possiblePoints.push(new Point(2,4));
+                    possiblePoints.push(new Point(1,4));
                     } 
              }      
             }}

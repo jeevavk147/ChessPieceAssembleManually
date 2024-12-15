@@ -59,9 +59,9 @@ export class Pawn extends Piece {
         {
           for(let i=0;i<8;i++)
               {
-                 if (this.board.isFieldEmpty(8,i))
+                 if (this.board.isFieldEmpty(7,i))
                   {
-                  possiblePoints.push(new Point(8,i));
+                  possiblePoints.push(new Point(7,i));
                   }
                }
         }
@@ -69,9 +69,9 @@ export class Pawn extends Piece {
         {
             for(let i=0;i<8;i++)
             {
-                if (this.board.isFieldEmpty(3,i))
+                if (this.board.isFieldEmpty(2,i))
                     {
-                     possiblePoints.push(new Point(3,i));
+                     possiblePoints.push(new Point(2,i));
                     }
                 }
             }}
@@ -81,9 +81,9 @@ export class Pawn extends Piece {
                  {
                    for(let i=0;i<8;i++)
                        {
-                          if (this.board.isFieldEmpty(3,i))
+                          if (this.board.isFieldEmpty(2,i))
                            {
-                           possiblePoints.push(new Point(3,i));
+                           possiblePoints.push(new Point(2,i));
                            }
                         }
                  }
@@ -91,9 +91,9 @@ export class Pawn extends Piece {
                  {
                      for(let i=0;i<8;i++)
                      {
-                         if (this.board.isFieldEmpty(8,i))
+                         if (this.board.isFieldEmpty(7,i))
                              {
-                              possiblePoints.push(new Point(8,i));
+                              possiblePoints.push(new Point(7,i));
                              }
                          }
                      }}

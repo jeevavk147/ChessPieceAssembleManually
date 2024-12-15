@@ -20,14 +20,12 @@ static loadDefaultPieces(board: Board) {
     board.placecount.set(10,2)
     board.placecount.set(11,2)
     board.placecount.set(12,1)
-    board.placecount.set(13,1)
 
-    board.placecount.set(14,8)
+    board.placecount.set(13,1)
+    board.placecount.set(14,2)
     board.placecount.set(15,2)
     board.placecount.set(16,2)
-    board.placecount.set(17,2)
-    board.placecount.set(18,1)
-    board.placecount.set(19,1)
+    board.placecount.set(17,8)
 
 
     // piony czarne
@@ -66,7 +64,7 @@ static loadDefaultPieces(board: Board) {
         board
     ));
     board.pieces.push(new King(
-        new Point(5, 8),
+        new Point(1,4),
         Color.BLACK,
         UnicodeConstants.BLACK_KING,
         board
@@ -94,56 +92,56 @@ static loadDefaultPieces(board: Board) {
     // piony biale
     for (let i = 0; i < 8; ++i) {
         board.pieces.push(new Pawn(
-            new Point(6, 8),
+            new Point(9, 8),
             Color.WHITE,
             UnicodeConstants.WHITE_PAWN,
             board
         ));
     }
     board.pieces.push(new Rook(
-        new Point(7, 8),
+        new Point(8, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_ROOK,
         board
     ));
     board.pieces.push(new Knight(
-        new Point(8, 8),
+        new Point(7, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_KNIGHT,
         board
     ));
     board.pieces.push(new Bishop(
-        new Point(9, 8),
+        new Point(6, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_BISHOP,
         board
     ));
     board.pieces.push(new Queen(
-        new Point(10, 8),
+        new Point(5,8),
         Color.WHITE,
         UnicodeConstants.WHITE_QUEEN,
         board
     ));
     board.pieces.push(new King(
-        new Point(11, 8),
+        new Point(8,4),
         Color.WHITE,
         UnicodeConstants.WHITE_KING,
         board
     ));
     board.pieces.push(new Bishop(
-        new Point(9, 8),
+        new Point(6, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_BISHOP,
         board
     ));
     board.pieces.push(new Knight(
-        new Point(8, 8),
+        new Point(7, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_KNIGHT,
         board
     ));
     board.pieces.push(new Rook(
-        new Point(7, 8),
+        new Point(8, 8),
         Color.WHITE,
         UnicodeConstants.WHITE_ROOK,
         board

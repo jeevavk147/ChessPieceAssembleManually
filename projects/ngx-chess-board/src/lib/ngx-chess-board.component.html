@@ -33,6 +33,31 @@
             class="board-row"
             *ngFor="let row of engineFacade.board.board; let i = index"
             >
+
+            <h3 style="position: absolute;" *ngIf="i===0 ">
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3>
+            <h3 style="position: absolute; margin-left: 65%;" *ngIf="i===0 && !engineFacade.board.reverted">
+                <span > &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 " >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3>
+            <h3 style="padding-top: 20px; margin-left: 65%;position: absolute;" *ngIf="i===9 && !engineFacade.board.reverted" >
+                <span > &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
+            <!-- <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 && engineFacade.board.reverted" >
+                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
+            </h3> -->
+            <h3 style="padding-top: 20px; margin-left: 65%;position: absolute;" *ngIf="i===9 && engineFacade.board.reverted" >
+                <span > &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
+            </h3>
+            <!-- <h3 style="position: absolute;" *ngIf="i===0 && engineFacade.board.reverted" >
+                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
+            </h3> -->
+            <h3 style="position: absolute; margin-left: 65%;" *ngIf="i===0 && engineFacade.board.reverted" >
+                <span> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
+            </h3>
             <div
                 class="board-col"
                 [class.current-selection]="showActivePiece && engineFacade.board.isXYInActiveMove(i,j)"
@@ -42,17 +67,17 @@
                 [class.possible-point]="engineFacade.board.isXYInPossibleMoves(i, j) && showLegalMoves"
                 [style.background-color]="getTileBackgroundColor(i, j)"
                 [style.border-left]="getbolderleftcolor(i,j)"
-                [style.border-bottom]="getbolderbottomcolor(i,j)"i
+                [style.border-bottom]="getbolderbottomcolor(i,j)"
                 *ngFor="let col of row; let j = index"
             >
-                
+    
                 <span
                     class="yCoord"
                     [style.color]="(i % 2 === 0) ? lightTileColor : darkTileColor"
                     [style.font-size.px]="pieceSize / 4"
-                    *ngIf="showCoords && j === 7 && i>1 && i<10"
+                    *ngIf="showCoords && j === 7 && i>0 && i<9"
                 >
-                    {{ engineFacade.coords.yCoords[i]-2 }}
+                    {{ engineFacade.coords.yCoords[i]-1 }}
                 </span>
                 <span class="yCoord" style="color: black;" *ngIf="j===8 && engineFacade.board.placecount.get(i+j)!=0">
                     {{ engineFacade.board.placecount.get(i+j) }}
@@ -62,9 +87,9 @@
                 </span>
                 <span
                     class="xCoord"
-                    [style.color]="(j % 2 === 0) ? lightTileColor : darkTileColor"
+                    [style.color]="(j % 2 === 0) ? darkTileColor : lightTileColor "
                     [style.font-size.px]="pieceSize / 4"
-                    *ngIf="showCoords && i === 9"
+                    *ngIf="showCoords && i === 8"
                 >
                     {{engineFacade.coords.xCoords[j]}}
                 </span>
@@ -76,32 +101,8 @@
                         [ngClass]="'piece'"
                         [style.font-size]="pieceSize + 'px'" > </div> </div>
             </div> <!--col close -->
-            <h3 style="position: absolute;" *ngIf="i===0 ">
-                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
-            </h3>
-            <h3 *ngIf="i===0 && !engineFacade.board.reverted">
-                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
-            </h3>
-            <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 " >
-                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
-            </h3>
-            <h3 style="padding-top: 20px;" *ngIf="i===9 && !engineFacade.board.reverted" >
-                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
-            </h3>
-            <!-- <h3 style="padding-top: 20px; position: absolute;" *ngIf="i===9 && engineFacade.board.reverted" >
-                {{this.engineFacade.user2==''?"User-2":this.engineFacade.user2}}
-            </h3> -->
-            <h3 style="padding-top: 20px;" *ngIf="i===9 && engineFacade.board.reverted" >
-                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.blacktotalsec)}}:{{this.engineFacade.blacktotalsec%60}}</span>
-            </h3>
-            <!-- <h3 style="position: absolute;" *ngIf="i===0 && engineFacade.board.reverted" >
-                {{this.engineFacade.user1==''?"User-1":this.engineFacade.user1}}
-            </h3> -->
-            <h3 *ngIf="i===0 && engineFacade.board.reverted" >
-                <span style="margin-left: 65%;"> &#x023F3;{{getabsmin(this.engineFacade.whitetotalsec)}}:{{this.engineFacade.whitetotalsec%60}}</span>
-            </h3>
-
       </div> <!--rowclose -->
+      <br>
       <input type="checkbox" id="check" [(ngModel)]="isChecked">
             <label for="check" >Show Captured Pieces</label>
             <br>

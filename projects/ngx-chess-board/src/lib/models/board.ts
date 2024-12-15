@@ -33,7 +33,7 @@ export class Board {
     fen: string;
 
     constructor() {
-        for (let i = 0; i < 12; ++i) {
+        for (let i = 0; i < 10; ++i) {
             this.board[i] = [];
             for (let j = 0; j < 9; ++j) {
                 this.board[i][j] = 0;
@@ -108,7 +108,7 @@ export class Board {
     }
 
     isFieldTakenByEnemy(row: number, col: number, enemyColor: Color): boolean {
-        if (row > 9 || row < 2 || col > 7 || col < 0) {
+        if (row > 8 || row < 1 || col > 7 || col < 0) {
             return false;
         }
         return this.pieces.some(
@@ -117,7 +117,7 @@ export class Board {
     }
 
     isFieldEmpty(row: number, col: number): boolean {
-        if (row > 9 || row < 2 || col > 7 || col < 0) {
+        if (row > 8 || row < 1 || col > 7 || col < 0) {
             return false;
         }
         return !this.pieces.some((piece) => piece.point.col === col && piece.point.row === row);
@@ -272,7 +272,7 @@ export class Board {
 
     private reversePoint(point: Point) {
         if (point && point.col!=8) {
-            point.row = Math.abs(point.row - 11);
+            point.row = Math.abs(point.row - 9);
             point.col = Math.abs(point.col - 7);
         }
         // if (point && point.col==8) {

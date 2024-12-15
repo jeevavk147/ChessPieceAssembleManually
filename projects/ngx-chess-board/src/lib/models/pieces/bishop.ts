@@ -62,48 +62,48 @@ export class Bishop extends Piece {
         if(!this.board.reverted)
         { if(this.color==Color.BLACK)
          {
-            if (this.board.isFieldEmpty(2,2))
+            if (this.board.isFieldEmpty(1,2))
                 {
-                possiblePoints.push(new Point(2,2));
+                possiblePoints.push(new Point(1,2));
                 }
-                if (this.board.isFieldEmpty(2,5))
+                if (this.board.isFieldEmpty(1,5))
                 {
-                    possiblePoints.push(new Point(2,5));
+                    possiblePoints.push(new Point(1,5));
                 }        
          } 
          if(this.color==Color.WHITE)
          {
-            if (this.board.isFieldEmpty(9,2))
+            if (this.board.isFieldEmpty(8,2))
                 {
-                possiblePoints.push(new Point(9,2));
+                possiblePoints.push(new Point(8,2));
                 }
-             if (this.board.isFieldEmpty(9,5))
+             if (this.board.isFieldEmpty(8,5))
                 {
-                possiblePoints.push(new Point(9,5));
+                possiblePoints.push(new Point(8,5));
                 }   
          }         }
          if(this.board.reverted)
          {
             if(this.color==Color.BLACK)
                 {
-                   if (this.board.isFieldEmpty(9,2))
+                   if (this.board.isFieldEmpty(8,2))
                        {
-                       possiblePoints.push(new Point(9,2));
+                       possiblePoints.push(new Point(8,2));
                        }
-                       if (this.board.isFieldEmpty(9,5))
+                       if (this.board.isFieldEmpty(8,5))
                        {
-                           possiblePoints.push(new Point(9,5));
+                           possiblePoints.push(new Point(8,5));
                        }        
                 } 
                 if(this.color==Color.WHITE)
                 {
-                   if (this.board.isFieldEmpty(2,2))
+                   if (this.board.isFieldEmpty(1,2))
                        {
-                       possiblePoints.push(new Point(2,2));
+                       possiblePoints.push(new Point(1,2));
                        }
-                    if (this.board.isFieldEmpty(2,5))
+                    if (this.board.isFieldEmpty(1,5))
                        {
-                       possiblePoints.push(new Point(2,5));
+                       possiblePoints.push(new Point(1,5));
                        }   
                 }    
 

@@ -182,9 +182,9 @@ export class NgxChessBoardComponent
         this.engineFacade.board.placecount.delete(i+j)
         let row=i
         let col=j
-        if(i>5)
+        if(i>4)
         {
-            let moved=20
+            let moved=18
         for(let k=i+j+1;k<=19;k++)
        { 
         for(let l=0;l<this.engineFacade.board.placecount.get(k);l++)
@@ -196,7 +196,7 @@ export class NgxChessBoardComponent
        }
        this.engineFacade.board.placecount.set(--moved,0)
       }
-      if(i<=5)
+      if(i<=4)
         {
             let moved=7
         for(let k=i+j-1;k>=8;k--)
@@ -344,7 +344,7 @@ export class NgxChessBoardComponent
 
     getTileBackgroundColor(i, j): string {
         let color
-        if(i>1 && i<10 && j<8)
+        if(i>0 && i<9 && j<8)
          color = ((i + j) % 2 === 0) ? this.lightTileColor : this.darkTileColor;
         if(j==8 && this.engineFacade.board.placecount.get(i+j)!=0)
             color=Constants.DEFAULT_COLOR
@@ -369,7 +369,7 @@ export class NgxChessBoardComponent
     }
     getbolderbottomcolor(i,j)
     {
-        if(j==8 && i==5 && this.engineFacade.board.placecount.get(i+j)!=0)
+        if(j==8 && i==4 && this.engineFacade.board.placecount.get(i+j)!=0)
         {
             return "2px solid black"
         }

@@ -1,7 +1,7 @@
 export class CoordsProvider {
     private readonly defaultXCoords: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' ];
 
-    private readonly defaultYCoords: number[] = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    private readonly defaultYCoords: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
     private currentXCoords: string[] = [...this.defaultXCoords];
     private currentYCoords: number[] = [...this.defaultYCoords];

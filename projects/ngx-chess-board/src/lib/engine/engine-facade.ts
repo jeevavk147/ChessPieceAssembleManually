@@ -508,7 +508,7 @@ export class EngineFacade extends AbstractEngineFacade {
                 let value=this.board.placecount.get(key)
                 this.board.placecount.set(key,value-1)
                 ++this.board.addedpiece
-                if(this.board.addedpiece==32)
+                if(this.board.addedpiece==30)
                     {
                         this.board.gamestart=true
                         this.board.currentWhitePlayer=true
@@ -563,7 +563,15 @@ export class EngineFacade extends AbstractEngineFacade {
         {
             const lastBoard = this.getLastBoard();
             const lastdest=this.board.lastMoveDest
-            const capturedPiece:Piece=lastBoard.getPieceByField(lastdest.row,lastdest.col)
+            let capturedPiece:Piece
+            if(!this.board.reverted)
+            { 
+                 capturedPiece=lastBoard.getPieceByField(lastdest.row,lastdest.col)
+                }
+            if(this.board.reverted)
+                { 
+                capturedPiece=lastBoard.getPieceByField( Math.abs(lastdest.row-9), Math.abs(lastdest.col-7))
+                }
             this.piececapture.push(capturedPiece)
             this.setcapture.add(capturedPiece.constant.icon)
             count=this.calculatecount(capturedPiece)

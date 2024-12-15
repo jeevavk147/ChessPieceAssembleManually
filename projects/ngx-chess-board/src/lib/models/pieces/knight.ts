@@ -69,24 +69,24 @@ export class Knight extends Piece {
             if(!this.board.reverted)
          {if(this.color==Color.BLACK)
          {
-            if (this.board.isFieldEmpty(2,1))
+            if (this.board.isFieldEmpty(1,1))
                 {
-                possiblePoints.push(new Point(2,1));
+                possiblePoints.push(new Point(1,1));
                 }
-                if (this.board.isFieldEmpty(2,6))
+                if (this.board.isFieldEmpty(1,6))
                 {
-                    possiblePoints.push(new Point(2,6));
+                    possiblePoints.push(new Point(1,6));
                 }        
          } 
          if(this.color==Color.WHITE)
          {
-            if (this.board.isFieldEmpty(9,1))
+            if (this.board.isFieldEmpty(8,1))
                 {
-                possiblePoints.push(new Point(9,1));
+                possiblePoints.push(new Point(8,1));
                 }
-             if (this.board.isFieldEmpty(9,6))
+             if (this.board.isFieldEmpty(8,6))
                 {
-                possiblePoints.push(new Point(9,6));
+                possiblePoints.push(new Point(8,6));
                 }   
          }      
         }
@@ -94,24 +94,24 @@ export class Knight extends Piece {
         if(this.board.reverted)
             {if(this.color==Color.BLACK)
             {
-               if (this.board.isFieldEmpty(9,1))
+               if (this.board.isFieldEmpty(8,1))
                    {
-                   possiblePoints.push(new Point(9,1));
+                   possiblePoints.push(new Point(8,1));
                    }
-                   if (this.board.isFieldEmpty(9,6))
+                   if (this.board.isFieldEmpty(8,6))
                    {
-                       possiblePoints.push(new Point(9,6));
+                       possiblePoints.push(new Point(8,6));
                    }        
             } 
             if(this.color==Color.WHITE)
             {
-               if (this.board.isFieldEmpty(2,1))
+               if (this.board.isFieldEmpty(1,1))
                    {
-                   possiblePoints.push(new Point(2,1));
+                   possiblePoints.push(new Point(1,1));
                    }
-                if (this.board.isFieldEmpty(2,6))
+                if (this.board.isFieldEmpty(1,6))
                    {
-                   possiblePoints.push(new Point(2,6));
+                   possiblePoints.push(new Point(1,6));
                    }   
             }      
            }
